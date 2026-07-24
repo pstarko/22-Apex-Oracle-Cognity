@@ -34,4 +34,4 @@ Przed szkoleniem zainstaluj:
 
 
 ```bash
-git clone [https://github.com/pstarko/21-PSE_Oracle-SQL-Sages.git](https://github.com/pstarko/22-Apex-Oracle-Cognity.git)
+git clone https://github.com/pstarko/22-Apex-Oracle-Cognity.git
