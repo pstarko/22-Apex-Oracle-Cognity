@@ -18,7 +18,7 @@ Przerwę obiadową przenosimy na koniec szkolenia: od 15:30<br>
 Przed szkoleniem zainstaluj:
 
 1. **Stwórz darmowe konto na APEX Oracle** ✅
-   - : [https://www.oracle.com/database/technologies/xe-downloads.html](https://www.oracle.com/apex/) ✅
+   - https://www.oracle.com/apex/ ✅
 
 ---
 
