@@ -7,7 +7,7 @@ Witaj! Tu znajdziesz wszystkie materiały do szkolenia **Programowanie w języku
 ---
 ## 📋 Godziny szkolenia:
 piątek(24.07.2026): 9:00 - 16:00 <br>
-piątek(21.08.2026): 8:00 - 16:30 <br><br>
+piątek(21.08.2026): 8:30 - 16:30 <br><br>
 
 Dwie przerwy po 20 minut<br>
 Przerwę obiadową przenosimy na koniec szkolenia: od 15:30<br>
