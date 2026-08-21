@@ -1,0 +1,35 @@
+--z web credentilas o nazwie countries_api i static identified: countries-api
+DECLARE
+  l_response  CLOB;
+  l_name      VARCHAR2(200);
+  l_capital   VARCHAR2(200);
+  l_country   VARCHAR2(200) := :P10_COUNTRY;
+BEGIN
+l_response := apex_web_service.make_rest_request(
+    p_url                  => 'https://api.restcountries.com/v3.1/name/' 
+                               || apex_util.url_encode(LOWER(l_country)),
+    p_http_method          => 'GET',
+    p_credential_static_id => 'countries-api'
+  );
+
+  SELECT jt.country_name,
+         jt.capital
+    INTO l_name,
+         l_capital
+    FROM JSON_TABLE(
+           l_response,
+           '$[0]'
+           COLUMNS (
+             country_name VARCHAR2(200) PATH '$.name.common',
+             capital      VARCHAR2(200) PATH '$.capital[0]'
+           )
+         ) jt;
+
+  P18_ODBIOR_KRAJU: = l_name;
+  P18_ODBIOR_STOLICY := l_capital;
+EXCEPTION
+  WHEN NO_DATA_FOUND THEN
+    DBMS_OUTPUT.PUT_LINE('Brak dopasowania — sprawdź odpowiedź: ' || DBMS_LOB.SUBSTR(l_response, 4000, 1));
+  WHEN OTHERS THEN
+    DBMS_OUTPUT.PUT_LINE('Błąd: ' || SQLERRM);
+END;
