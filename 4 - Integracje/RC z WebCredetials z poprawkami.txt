@@ -25,8 +25,8 @@ l_response := apex_web_service.make_rest_request(
            )
          ) jt;
 
-  P18_ODBIOR_KRAJU: = l_name;
-  P18_ODBIOR_STOLICY := l_capital;
+  :P18_ODBIOR_KRAJU := l_name;
+  :P18_ODBIOR_STOLICY := l_capital;
 EXCEPTION
   WHEN NO_DATA_FOUND THEN
     DBMS_OUTPUT.PUT_LINE('Brak dopasowania — sprawdź odpowiedź: ' || DBMS_LOB.SUBSTR(l_response, 4000, 1));
