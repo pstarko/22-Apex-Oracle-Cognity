@@ -1,0 +1,24 @@
+CREATE TABLE CITY_GEO (
+    ID        NUMBER(10)     NOT NULL,
+    CITY_NAME VARCHAR2(100)  NOT NULL,
+    COUNTRY   VARCHAR2(100)  NOT NULL,
+    LON       NUMBER(10, 6)  NOT NULL,  -- długość geograficzna (longitude)
+    LAT       NUMBER(10, 6)  NOT NULL,  -- szerokość geograficzna (latitude)
+    CONSTRAINT PK_CITY_GEO PRIMARY KEY (ID)
+);
+
+-- ============================================================
+-- Inserty do tabeli CITY_GEO
+-- ============================================================
+INSERT INTO CITY_GEO (ID, CITY_NAME, COUNTRY, LON, LAT) VALUES (1,  'Warszawa',  'Polska',    21.012200, 52.229700);
+INSERT INTO CITY_GEO (ID, CITY_NAME, COUNTRY, LON, LAT) VALUES (2,  'Berlin',    'Niemcy',    13.405000, 52.520000);
+INSERT INTO CITY_GEO (ID, CITY_NAME, COUNTRY, LON, LAT) VALUES (3,  'Paryż',     'Francja',    2.352200, 48.856600);
+INSERT INTO CITY_GEO (ID, CITY_NAME, COUNTRY, LON, LAT) VALUES (4,  'Rzym',      'Włochy',    12.496400, 41.902800);
+INSERT INTO CITY_GEO (ID, CITY_NAME, COUNTRY, LON, LAT) VALUES (5,  Barcelona,    'Hiszpania', 41.3851, 2.1734);
+INSERT INTO CITY_GEO (ID, CITY_NAME, COUNTRY, LON, LAT) VALUES (6,  'Wiedeń',    'Austria',   16.373800, 48.208200);
+INSERT INTO CITY_GEO (ID, CITY_NAME, COUNTRY, LON, LAT) VALUES (7,  'Praga',     'Czechy',    14.437800, 50.075500);
+INSERT INTO CITY_GEO (ID, CITY_NAME, COUNTRY, LON, LAT) VALUES (8,  'Budapeszt', 'Węgry',     19.040200, 47.497900);
+INSERT INTO CITY_GEO (ID, CITY_NAME, COUNTRY, LON, LAT) VALUES (9,  'Amsterdam', 'Holandia',   4.904100, 52.367600);
+INSERT INTO CITY_GEO (ID, CITY_NAME, COUNTRY, LON, LAT) VALUES (10, 'Bruksela', 'Belgia',     4.351700, 50.850300);
+
+COMMIT;
