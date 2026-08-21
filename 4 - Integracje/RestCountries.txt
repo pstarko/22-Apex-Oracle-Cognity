@@ -1,0 +1,34 @@
+DECLARE
+  l_response  CLOB;
+  l_name      VARCHAR2(200);
+  l_capital   VARCHAR2(200);
+  l_api_key   VARCHAR2(4000) := 'rc_live_9ef2ca5683e244a1af41c1da0aa8be0e';
+BEGIN
+  -- Poprawny nagłówek uwierzytelniający
+  apex_web_service.g_request_headers(1).name  := 'Authorization';
+  apex_web_service.g_request_headers(1).value := 'Bearer ' || l_api_key;
+
+  l_response := apex_web_service.make_rest_request(
+    p_url         => 'https://api.restcountries.com/countries/v5?q=poland',
+    p_http_method => 'GET'
+  );
+
+  SELECT jt.country_name,
+         jt.capital
+    INTO l_name,
+         l_capital
+    FROM JSON_TABLE(
+           l_response,
+           '$.data.objects[0]'
+           COLUMNS (
+             country_name VARCHAR2(200) PATH '$.names.common',
+             capital      VARCHAR2(200) PATH '$.capitals[0].name'
+           )
+         ) jt;
+
+  DBMS_OUTPUT.PUT_LINE('Nazwa: ' || l_name);
+  DBMS_OUTPUT.PUT_LINE('Stolica: ' || l_capital);
+EXCEPTION
+  WHEN NO_DATA_FOUND THEN
+    DBMS_OUTPUT.PUT_LINE('Brak dopasowania — sprawdź odpowiedź: ' || DBMS_LOB.SUBSTR(l_response, 4000, 1));
+END;
