@@ -1,0 +1,29 @@
+SET DEFINE OFF --(żeby  & nie traktował jako wyzwalacza w SQL Developer)
+/
+declare
+    l_url      varchar2(4000);
+    l_response clob;
+begin
+    l_url :=
+        'https://api.open-meteo.com/v1/forecast' ||
+        '?latitude=52.2297' ||
+        '&longitude=21.0122' ||
+        '&current=temperature_2m,wind_speed_10m,weather_code' ||
+        '&hourly=temperature_2m,relative_humidity_2m' ||
+        '&timezone=auto';
+
+    l_response := apex_web_service.make_rest_request(
+        p_url         => l_url,
+        p_http_method => 'GET'
+    );
+
+    apex_json.parse(l_response);
+
+    dbms_output.put_line(
+        'Temp: ' || apex_json.get_number(p_path => 'current.temperature_2m')
+    );
+
+    dbms_output.put_line(
+        'Wind: ' || apex_json.get_number(p_path => 'current.wind_speed_10m')
+    );
+end;
